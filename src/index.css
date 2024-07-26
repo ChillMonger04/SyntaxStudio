@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "questrial";
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+.top-pane {
+  background-color: hsl(225, 6%, 25%);
+  transition: all ease 0.5s;
+}
+
+.pane {
+  height: 50vh;
+  display: flex; /* so it takes the bottom half */
+}
+
+.editor-container {
+  flex-grow: 1; /* So they take the complete width */
+  flex-basis: 0; /* So they are all of the same size*/
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  background-color: hsl(225, 6%, 25%);
+}
+
+.editor-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  background-color: #c83737;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+
+.editor-container.collapsed {
+  flex-grow: 0;
+}
+
+/* This is when we click close btn */
+/* Before this the editor will only collapse till the width of the text */
+/* Now after this as it is positioned absolute we can reduce the width as flex-grow: 0*/
+.editor-container.collapsed .CodeMirror-scroll {
+  position: absolute;
+  overflow: hidden !important; /* prevent the scrollbar*/
+}
+
+.expand-collapse-btn {
+  margin-left: 0.9rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.CodeMirror {
+  height: 100% !important; /* Overwriting the default height for our 3 editors */
+  transition: all ease 0.5s;
+}
+
+.code-mirror-wrapper {
+  flex-grow: 1; /* So they grow to the entire height */
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  overflow: hidden;
+  transition: all ease 0.5s;
+}
+
+/* Ensure theme and font size selectors are hidden when collapsed */
+.editor-container.collapsed .editor-theme-selector,
+.editor-container.collapsed .editor-fontsize-selector {
+  display: none;
+}
+
+/* Styles for select buttons */
+.editor-theme-selector,
+.editor-fontsize-selector {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: hsl(225, 6%, 20%);
+  color: white;
+  border: 1px solid hsl(225, 6%, 35%);
+  border-radius: 0.25rem;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.editor-theme-selector:hover,
+.editor-fontsize-selector:hover {
+  background-color: hsl(225, 6%, 30%);
+  border-color: hsl(225, 6%, 40%);
+}
+
+.editor-theme-selector:focus,
+.editor-fontsize-selector:focus {
+  border-color: hsl(225, 6%, 50%);
+}
