@@ -26,7 +26,11 @@ import { Controlled as ControlledEditor } from "react-codemirror2";
 
 // Importing FontAwesome icons for expand/collapse functionality
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompressAlt, faExpandAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCompressAlt,
+  faExpandAlt,
+  faCopy,
+} from "@fortawesome/free-solid-svg-icons";
 
 // eslint-disable-next-line react/prop-types
 const Editor = ({ displayName, language, value, onChange }) => {
@@ -64,6 +68,18 @@ const Editor = ({ displayName, language, value, onChange }) => {
     }
   }, [fontSize]);
 
+  // Handler to copy the editor content to the clipboard
+  const handleCopyToClipboard = () => {
+    navigator.clipboard
+      .writeText(value)
+      .then(() => {
+        alert("Copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   return (
     // Container for the editor
     <div
@@ -98,6 +114,16 @@ const Editor = ({ displayName, language, value, onChange }) => {
               <option value="16px">16px</option>
               <option value="18px">18px</option>
             </select>
+
+            {/* Button to copy editor content to clipboard */}
+            <button
+              className="copy-btn"
+              type="button"
+              onClick={handleCopyToClipboard}
+              title="Copy to Clipboard"
+            >
+              <FontAwesomeIcon icon={faCopy} />
+            </button>
           </>
         )}
 

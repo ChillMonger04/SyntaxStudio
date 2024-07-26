@@ -104,3 +104,25 @@ body {
 .editor-fontsize-selector:focus {
   border-color: hsl(225, 6%, 50%);
 }
+
+/* Styles for the copy button */
+.copy-btn {
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background-color: hsl(225, 6%, 20%);
+  color: white;
+  border: 1px solid hsl(225, 6%, 35%);
+  border-radius: 0.25rem;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.copy-btn:hover {
+  background-color: hsl(225, 6%, 30%);
+  border-color: hsl(225, 6%, 40%);
+}
+
+.copy-btn:focus {
+  border-color: hsl(225, 6%, 50%);
+}
